@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+
+:root {
+  --bg-primary: #f1f5f9;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-tertiary: #eff6ff;
+  --accent-blue: #1e40af;
+  --accent-blue-mid: #2563eb;
+  --accent-blue-light: #60a5fa;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --color-success: #059669;
+  --color-danger: #ef4444;
+  --color-assembly: #2563eb;
+  --color-executive: #7c3aed;
+  --color-court: #059669;
+  --color-cc: #d97706;
+  --font-sans: 'Noto Sans KR', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', 'Noto Sans KR', sans-serif;
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  background-color: var(--bg-primary);
+  background-image:
+    radial-gradient(at 0% 0%, rgba(219, 234, 254, 0.5) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(239, 246, 255, 0.6) 0px, transparent 50%);
+  background-attachment: fixed;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font-family: inherit;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.gradient-title {
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-light) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.spring-btn {
+  transition: transform 0.25s var(--ease-spring), box-shadow 0.25s var(--ease-spring), background 0.2s ease, border-color 0.2s ease;
+}
+
+.spring-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.spring-btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+.spring-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-blue-mid), var(--accent-blue));
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+}
+
+.btn-primary:hover:not(:disabled) {
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
+}
+
+.combo-badge {
+  font-family: var(--font-display);
+  background: var(--bg-tertiary);
+  border: 2px solid rgba(37, 99, 235, 0.15);
+  color: var(--accent-blue-mid);
+  animation: comboPulse 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes comboPulse {
+  from { box-shadow: 0 0 4px rgba(37, 99, 235, 0.1); }
+  to { box-shadow: 0 0 14px rgba(37, 99, 235, 0.35); }
+}
+
+.law-article {
+  background: var(--bg-tertiary);
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  border-radius: 12px;
+}
+
+.law-article-divider {
+  border-bottom: 1px dashed rgba(37, 99, 235, 0.25);
+}
+
+.lawbook-slider {
+  transition: right 0.4s var(--ease-spring);
+}
+
+.lawbook-handle {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.shake {
+  animation: shake 0.4s var(--ease-spring);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+.flash-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border-width: 12px;
+  border-style: solid;
+  border-color: transparent;
+  opacity: 0;
+}
+
+.flash-overlay.flash-success {
+  border-color: rgba(5, 150, 105, 0.75);
+  box-shadow: inset 0 0 40px rgba(5, 150, 105, 0.5);
+  animation: flashOnce 0.45s ease-out;
+}
+
+.flash-overlay.flash-danger {
+  border-color: rgba(239, 68, 68, 0.75);
+  box-shadow: inset 0 0 40px rgba(239, 68, 68, 0.45);
+  animation: flashOnce 0.35s ease-out;
+}
+
+@keyframes flashOnce {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.card-pop {
+  animation: cardPop 0.3s var(--ease-spring);
+}
+
+@keyframes cardPop {
+  0% { opacity: 0; transform: translateY(8px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
