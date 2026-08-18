@@ -20,3 +20,10 @@ npm run lint      # oxlint
 ## 데이터 추가/수정
 
 문제는 `src/data/pingPongData.json`에 있습니다. 각 문항은 상황(situation), 견제해야 할 기관(correctCheckerOrg), 선택지(options, 오답 사유 포함), 근거 조항(article)과 해설(explanation)로 구성됩니다.
+
+## 출처
+
+문제와 권력분립 도식([DiagramPanel](src/components/DiagramPanel.jsx))은 아래 고등학교 "정치와 법" 교과서를 참고하여 제작했습니다.
+
+- 비상교육 《정치와 법》 교사용 지도서, 55쪽 "우리나라 국가기관 간 견제 수단" 도식
+- 천재교육 《정치와 법》 교과서, 62~67쪽(권력 분립의 원리), 95~98쪽(법원과 헌법재판소)

@@ -97,6 +97,9 @@ export default function DiagramPanel({ open, onToggle }) {
             <p className="px-1 text-xs leading-relaxed" style={{ color: 'var(--text-muted)' }}>
               ※ 정당해산심판도 헌법재판소의 권한이지만, 이는 국가기관이 아닌 정당을 상대로 하는 심판이라 이 게임에서는 다루지 않아요.
             </p>
+            <p className="px-1 text-xs leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+              출처: 비상교육 《정치와 법》 교과서 55쪽 도식
+            </p>
           </div>
         </div>
     </div>
