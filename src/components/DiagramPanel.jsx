@@ -1,12 +1,12 @@
 import { X, ScrollText } from 'lucide-react'
 
 const EDGES = [
-  { from: [200, 60], to: [340, 300], label: '거부권 · 탄핵소추 · 해임건의' },
-  { from: [340, 300], to: [60, 300], label: '법관 임명권 ↔ 명령·규칙 심사' },
-  { from: [60, 300], to: [200, 60], label: '대법원장 임명동의' },
-  { from: [200, 220], to: [200, 60], label: '탄핵심판 · 권한쟁의심판' },
-  { from: [200, 220], to: [340, 300], label: '탄핵 심판 대상' },
-  { from: [200, 220], to: [60, 300], label: '위헌법률심판' },
+  { from: [200, 60], to: [340, 300], label: '거부권 ↔ 국정감사·탄핵소추권' },
+  { from: [340, 300], to: [60, 300], label: '사면·임명권 ↔ 명령·규칙 심사권' },
+  { from: [60, 300], to: [200, 60], label: '위헌법률심판 제청권 ↔ 임명동의·탄핵소추권' },
+  { from: [200, 220], to: [200, 60], label: '위헌법률·헌법소원심판권 ↔ 임명동의·탄핵소추권' },
+  { from: [200, 220], to: [340, 300], label: '탄핵심판·헌법소원심판권 ↔ 재판관 임명권' },
+  { from: [200, 220], to: [60, 300], label: '위헌 심사형 헌법소원' },
 ]
 
 const NODES = [
@@ -57,6 +57,14 @@ export default function DiagramPanel({ open, onToggle }) {
           <svg viewBox="0 0 400 340" className="w-full">
             {EDGES.map((edge, i) => {
               const [mx, my] = midpoint(edge.from, edge.to)
+              // 라벨이 길면 '↔' 기준으로 두 줄로 나눠 그린다. 한 줄로 그리면
+              // 고정폭 배경 상자를 넘어가 옆 라벨과 겹치는 문제가 있었다.
+              const lines = edge.label.includes('↔')
+                ? edge.label.split(/\s*↔\s*/).map((part, idx) => (idx === 0 ? part : '↔ ' + part))
+                : [edge.label]
+              const maxLen = Math.max(...lines.map((l) => l.length))
+              const boxWidth = Math.max(96, maxLen * 9 + 12)
+              const boxHeight = lines.length > 1 ? 32 : 20
               return (
                 <g key={i}>
                   <line
@@ -68,9 +76,13 @@ export default function DiagramPanel({ open, onToggle }) {
                     strokeWidth="2"
                     strokeDasharray="5 4"
                   />
-                  <rect x={mx - 55} y={my - 11} width="110" height="20" rx="10" fill="#ffffff" opacity="0.92" />
-                  <text x={mx} y={my + 4} textAnchor="middle" fontSize="9" fontWeight="700" fill="var(--text-muted)">
-                    {edge.label}
+                  <rect x={mx - boxWidth / 2} y={my - boxHeight / 2} width={boxWidth} height={boxHeight} rx="10" fill="#ffffff" opacity="0.92" />
+                  <text x={mx} y={my + (lines.length > 1 ? -1 : 4)} textAnchor="middle" fontSize="8.5" fontWeight="700" fill="var(--text-muted)">
+                    {lines.map((line, li) => (
+                      <tspan key={li} x={mx} dy={li === 0 ? 0 : 11}>
+                        {line}
+                      </tspan>
+                    ))}
                   </text>
                 </g>
               )
@@ -94,6 +106,9 @@ export default function DiagramPanel({ open, onToggle }) {
                 점선은 두 기관이 서로 견제할 수 있는 헌법상 권한이 있다는 뜻이에요. 가운데 <b>헌법재판소</b>는 국회·대통령·법원 세 기관 모두를 최종적으로 심판하는 역할을 합니다.
               </p>
             </div>
+            <p className="px-1 text-xs leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+              ※ 권한쟁의심판도 헌법재판소의 권한이지만, 특정 기관을 일방적으로 견제하는 수단이 아니라 국가기관들 사이에 권한 다툼이 생겼을 때 이를 해소해 주는 심판이에요. 그래서 이 도식에서는 화살표로 표시하지 않았어요.
+            </p>
             <p className="px-1 text-xs leading-relaxed" style={{ color: 'var(--text-muted)' }}>
               ※ 정당해산심판도 헌법재판소의 권한이지만, 이는 국가기관이 아닌 정당을 상대로 하는 심판이라 이 게임에서는 다루지 않아요.
             </p>

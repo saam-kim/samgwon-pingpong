@@ -17,6 +17,9 @@ dist-ssr
 !.vscode/extensions.json
 .idea
 .DS_Store
+
+# 홍보자료 (로컬 전용, git 추적 제외)
+promo/
 *.suo
 *.ntvs*
 *.njsproj
