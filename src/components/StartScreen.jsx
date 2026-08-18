@@ -11,7 +11,7 @@ export default function StartScreen({ onStart }) {
       <div className="text-center">
         <div className="mb-4 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-bold" style={{ background: 'rgba(37,99,235,0.08)', color: 'var(--accent-blue-mid)' }}>
           <Scale size={16} />
-          정치와 법 · 헌법 단원
+          법과 사회 · 헌법 단원
         </div>
         <h1 className="gradient-title text-4xl font-black tracking-tight sm:text-5xl">
           ⚖️ 되받아쳐! 삼권분립
