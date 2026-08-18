@@ -14,7 +14,7 @@ export default function StartScreen({ onStart }) {
           정치와 법 · 헌법 단원
         </div>
         <h1 className="gradient-title text-4xl font-black tracking-tight sm:text-5xl">
-          ⚖️ 권력 분립 핑퐁
+          ⚖️ 되받아쳐! 삼권분립
         </h1>
         <p className="mt-3 text-lg font-medium" style={{ color: 'var(--text-muted)' }}>
           견제와 균형, 핑퐁처럼 되받아쳐보자

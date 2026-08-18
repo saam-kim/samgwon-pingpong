@@ -1,16 +1,22 @@
-# React + Vite
+# 되받아쳐! 삼권분립
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+고등학교 "정치와 법" 헌법 단원용 웹 퀴즈 게임입니다. 국가기관(국회·대통령·행정부·법원·헌법재판소)이 권한을 행사하는 상황이 제시되면, 이를 견제할 기관과 헌법상 견제 수단을 순서대로 골라 핑퐁처럼 되받아치며 학습합니다.
 
-Currently, two official plugins are available:
+## 플레이
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+https://saam-kim.github.io/samgwon-pingpong/
 
-## React Compiler
+## 개발
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev      # 로컬 개발 서버
+npm run build    # 정적 빌드 (dist/)
+npm run lint      # oxlint
+```
 
-## Expanding the Oxlint configuration
+`master` 브랜치에 push하면 GitHub Actions가 자동으로 빌드하여 GitHub Pages에 배포합니다 (`.github/workflows/deploy.yml`).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## 데이터 추가/수정
+
+문제는 `src/data/pingPongData.json`에 있습니다. 각 문항은 상황(situation), 견제해야 할 기관(correctCheckerOrg), 선택지(options, 오답 사유 포함), 근거 조항(article)과 해설(explanation)로 구성됩니다.
